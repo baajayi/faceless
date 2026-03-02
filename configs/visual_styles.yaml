@@ -1,0 +1,79 @@
+# Visual style definitions — used by Agent D (storyboard) and Agent E (asset generation).
+# Each style defines a palette and style_lock description for DALL-E 3 prompts.
+
+styles:
+  cartoon:
+    label: "Bright Cartoon"
+    palette:
+      primary: "#FF6B6B"
+      secondary: "#4ECDC4"
+      accent: "#FFE66D"
+      background: "#F7FFF7"
+      text: "#2C3E50"
+    character_style: >
+      friendly cartoon character with round shapes, big expressive eyes,
+      vibrant colors, child-friendly illustration style, no human faces
+    background_style: >
+      colorful cartoon background with simple geometric shapes,
+      bright gradients, clean vector art style
+    dalle_style_prefix: >
+      Children's educational cartoon illustration, vibrant colors,
+      round friendly shapes, big eyes on animals/objects,
+      NO human faces visible, age 4-10 appropriate, flat design with depth,
+
+  paper-cut:
+    label: "Paper Cut-out"
+    palette:
+      primary: "#E63946"
+      secondary: "#457B9D"
+      accent: "#F4D35E"
+      background: "#EDF2F4"
+      text: "#2B2D42"
+    character_style: >
+      paper cut-out style character, layered paper texture,
+      bold outlines, craft paper colors, no human faces
+    background_style: >
+      layered paper cut-out background, craft paper textures,
+      hand-cut look with slight shadows, soft pastel layers
+    dalle_style_prefix: >
+      Children's paper cut-out craft illustration, layered paper textures,
+      handmade craft look, bold simple shapes,
+      NO human faces visible, age 4-10 appropriate,
+
+  3d-toy:
+    label: "3D Toy"
+    palette:
+      primary: "#FF595E"
+      secondary: "#6A4C93"
+      accent: "#FFCA3A"
+      background: "#8AC926"
+      text: "#1982C4"
+    character_style: >
+      cute 3D toy-like character, plastic glossy look,
+      rounded friendly shapes, toy store aesthetic, no human faces
+    background_style: >
+      3D toy environment, colorful plastic surfaces,
+      playroom setting, bright studio lighting
+    dalle_style_prefix: >
+      Children's 3D toy render, glossy plastic materials,
+      cute rounded shapes, toy-like aesthetic,
+      NO human faces visible, age 4-10 appropriate, studio lighting,
+
+  whiteboard:
+    label: "Whiteboard Animation"
+    palette:
+      primary: "#2196F3"
+      secondary: "#FF9800"
+      accent: "#4CAF50"
+      background: "#FFFFFF"
+      text: "#212121"
+    character_style: >
+      whiteboard drawing style character, hand-drawn black lines,
+      simple sketchy style, no human faces
+    background_style: >
+      white background with hand-drawn elements,
+      marker sketch style, simple geometric illustrations
+    dalle_style_prefix: >
+      Children's whiteboard animation style illustration,
+      hand-drawn marker sketch, simple clean lines on white background,
+      NO human faces visible, age 4-10 appropriate,

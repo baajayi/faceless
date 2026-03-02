@@ -1,0 +1,97 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: faceless
+      POSTGRES_USER: faceless
+      POSTGRES_PASSWORD: faceless
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U faceless -d faceless"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://faceless:faceless@postgres:5432/faceless
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./output:/app/output
+      - ./assets:/app/assets
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    build: .
+    command: >
+      sh -c "alembic upgrade head &&
+             celery -A app.tasks.celery_app worker
+             --loglevel=info
+             --queues=default,asset_gen
+             --concurrency=4"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://faceless:faceless@postgres:5432/faceless
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./output:/app/output
+      - ./assets:/app/assets
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  beat:
+    build: .
+    command: >
+      celery -A app.tasks.celery_app beat
+      --loglevel=info
+      --scheduler=celery.beat.PersistentScheduler
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://faceless:faceless@postgres:5432/faceless
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./output:/app/output
+      - ./assets:/app/assets
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

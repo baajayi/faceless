@@ -1,0 +1,7 @@
+# One term per line, lower-case preferred.
+# Proper nouns, brand terms, and domain-specific words.
+tiktok
+kidsfacts
+youtube
+emoji
+butterfly

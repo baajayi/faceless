@@ -1,0 +1,194 @@
+# Topic category taxonomy for diversity tracking.
+# Agent B uses this to ensure no category appears > 2 times per 7-day window.
+
+categories:
+  animals:
+    label: "Animals & Nature"
+    subcategories:
+      - wild_animals
+      - ocean_life
+      - insects
+      - birds
+      - dinosaurs
+      - pets
+    keywords:
+      - animal
+      - animals
+      - wildlife
+      - nature
+      - creature
+      - beast
+      - bug
+      - insect
+      - bird
+      - fish
+      - ocean
+      - sea
+      - dinosaur
+      - dino
+
+  science:
+    label: "Science & STEM"
+    subcategories:
+      - space
+      - physics
+      - chemistry
+      - biology
+      - earth_science
+      - weather
+    keywords:
+      - science
+      - experiment
+      - planet
+      - space
+      - star
+      - galaxy
+      - solar
+      - gravity
+      - atom
+      - chemistry
+      - biology
+      - weather
+      - volcano
+      - tornado
+
+  math:
+    label: "Math & Numbers"
+    subcategories:
+      - counting
+      - shapes
+      - fractions
+      - patterns
+    keywords:
+      - math
+      - number
+      - count
+      - shape
+      - fraction
+      - addition
+      - subtract
+      - multiply
+      - divide
+      - pattern
+      - geometry
+
+  history:
+    label: "History & Culture"
+    subcategories:
+      - ancient_history
+      - world_cultures
+      - inventions
+      - famous_people
+    keywords:
+      - history
+      - ancient
+      - culture
+      - civilization
+      - invention
+      - discovery
+      - explorer
+      - landmark
+
+  language:
+    label: "Language & Literacy"
+    subcategories:
+      - alphabet
+      - spelling
+      - reading
+      - languages
+    keywords:
+      - alphabet
+      - letter
+      - word
+      - spelling
+      - reading
+      - language
+      - write
+      - grammar
+
+  health:
+    label: "Health & Wellness"
+    subcategories:
+      - nutrition
+      - exercise
+      - hygiene
+      - body
+    keywords:
+      - health
+      - food
+      - nutrition
+      - exercise
+      - body
+      - hygiene
+      - vitamin
+      - sleep
+      - vegetable
+      - fruit
+
+  arts:
+    label: "Arts & Creativity"
+    subcategories:
+      - music
+      - drawing
+      - crafts
+      - dance
+    keywords:
+      - art
+      - music
+      - draw
+      - craft
+      - color
+      - paint
+      - dance
+      - song
+      - rhythm
+
+  technology:
+    label: "Technology & Engineering"
+    subcategories:
+      - coding
+      - robots
+      - machines
+      - engineering
+    keywords:
+      - technology
+      - robot
+      - computer
+      - code
+      - machine
+      - engineering
+      - build
+      - invent
+
+  geography:
+    label: "Geography & World"
+    subcategories:
+      - countries
+      - continents
+      - landmarks
+      - maps
+    keywords:
+      - country
+      - continent
+      - map
+      - world
+      - ocean
+      - mountain
+      - river
+      - landmark
+      - capital
+
+  fun_facts:
+    label: "Fun Facts & Trivia"
+    subcategories:
+      - world_records
+      - surprising_facts
+      - did_you_know
+    keywords:
+      - fact
+      - trivia
+      - record
+      - surprising
+      - amazing
+      - weird
+      - did you know

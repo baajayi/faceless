@@ -1,0 +1,76 @@
+# Safety blocklist — topics/keywords that are hard-blocked from ever being selected.
+# Loaded by Agent B (topic_selection.py).
+
+blocked_keywords:
+  # Violence / harm
+  - murder
+  - kill
+  - blood
+  - gore
+  - weapon
+  - gun
+  - knife
+  - bomb
+  - explosion
+  - war
+  - death
+  - dead
+  - suicide
+  - self-harm
+  # Adult / sexual
+  - sex
+  - porn
+  - nude
+  - naked
+  - adult
+  - dating
+  # Drugs / alcohol
+  - drug
+  - alcohol
+  - beer
+  - wine
+  - cocaine
+  - marijuana
+  - weed
+  - smoking
+  - vaping
+  # Scary / horror
+  - horror
+  - scary
+  - creepy
+  - monster
+  - demon
+  - devil
+  - ghost
+  - haunted
+  # Medical misinformation
+  - cure cancer
+  - miracle treatment
+  - vaccine harmful
+  - anti-vax
+  # Political / controversial
+  - election fraud
+  - conspiracy
+  # Brand endorsement (common brands that imply commercial endorsement)
+  - fortnite
+  - roblox
+  - minecraft challenge
+  - pepsi
+  - coca-cola
+  # Dangerous challenges
+  - challenge danger
+  - fire challenge
+  - choking challenge
+
+blocked_categories:
+  - violence
+  - adult_content
+  - horror
+  - drugs_alcohol
+  - political
+  - medical_misinformation
+
+blocked_brands:
+  - fortnite
+  - roblox
+  - minecraft  # OK as educational topic but not as challenge/brand promo

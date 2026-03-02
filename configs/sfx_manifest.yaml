@@ -1,0 +1,28 @@
+# SFX manifest — maps sound effect type to asset filename.
+# Files must exist in assets/sfx/ directory.
+
+sfx:
+  ding:
+    file: "ding.mp3"
+    description: "Bright positive ding sound for correct answers / reveals"
+    duration_ms: 800
+
+  pop:
+    file: "pop.mp3"
+    description: "Fun pop sound for transitions / new items appearing"
+    duration_ms: 300
+
+  whoosh:
+    file: "whoosh.mp3"
+    description: "Whoosh transition sound for slide changes"
+    duration_ms: 500
+
+  chime:
+    file: "ding.mp3"  # alias
+    description: "Gentle chime for intro"
+    duration_ms: 800
+
+  transition:
+    file: "whoosh.mp3"  # alias
+    description: "Scene transition"
+    duration_ms: 500
