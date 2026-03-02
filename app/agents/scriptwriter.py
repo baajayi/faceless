@@ -203,6 +203,7 @@ def _generate_script(
         raw_text = response.choices[0].message.content
         try:
             raw_data = json.loads(raw_text)
+            _sanitize_sound_effects(raw_data)
             validated = ScriptSchema.model_validate(raw_data)
             data = validated.model_dump()
             if spellcheck_enabled():
@@ -217,3 +218,13 @@ def _generate_script(
             log.warning("agent_c.validation_failed", attempt=attempt, error=last_error)
 
     raise ValueError(f"Script validation failed after {max_rounds} attempts: {last_error}")
+
+
+def _sanitize_sound_effects(raw_data: dict) -> None:
+    """Drop invalid sound effect types before validation."""
+    allowed = {"pop", "ding", "whoosh"}
+    sfx = raw_data.get("sound_effects")
+    if not isinstance(sfx, list):
+        return
+    cleaned = [item for item in sfx if isinstance(item, dict) and item.get("type") in allowed]
+    raw_data["sound_effects"] = cleaned

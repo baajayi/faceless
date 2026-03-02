@@ -437,6 +437,7 @@ def _run_scriptwriter(run_id: str, run: _Row, store: _Store, revision_feedback: 
 
         try:
             raw = _json.loads(resp.choices[0].message.content)
+            _sanitize_sound_effects(raw)
             validated = ScriptSchema.model_validate(raw)
             break
         except Exception as e:
@@ -467,6 +468,15 @@ def _run_scriptwriter(run_id: str, run: _Row, store: _Store, revision_feedback: 
     run.status = "SCRIPTED"
     store.persist_run(run)
     return sid
+
+
+def _sanitize_sound_effects(raw_data: dict) -> None:
+    allowed = {"pop", "ding", "whoosh"}
+    sfx = raw_data.get("sound_effects")
+    if not isinstance(sfx, list):
+        return
+    cleaned = [item for item in sfx if isinstance(item, dict) and item.get("type") in allowed]
+    raw_data["sound_effects"] = cleaned
 
 
 def _run_storyboard(run_id: str, run: _Row, store: _Store) -> str:
