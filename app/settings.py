@@ -24,7 +24,14 @@ class Settings(BaseSettings):
     MUSIC_MODE: Literal["none", "royalty_free", "generated"] = "none"
 
     # ── Publishing ────────────────────────────────────────────────────────────
-    PUBLISH_MODE: Literal["A", "B", "C"] = "C"
+    PUBLISH_MODE: Literal["A", "B", "C", "Y"] = "C"
+
+    # ── YouTube Publishing (MODE_Y) ──────────────────────────────────────────
+    YOUTUBE_CLIENT_ID: Optional[str] = None
+    YOUTUBE_CLIENT_SECRET: Optional[str] = None
+    YOUTUBE_REFRESH_TOKEN: Optional[str] = None
+    YOUTUBE_PRIVACY_STATUS: Literal["public", "unlisted", "private"] = "public"
+    YOUTUBE_UPLOAD_THUMBNAIL: bool = True
 
     # ── Text / OCR / Spellcheck ───────────────────────────────────────────────
     IMAGE_TEXT_ENFORCEMENT: bool = True

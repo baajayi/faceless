@@ -8,6 +8,7 @@ from __future__ import annotations
 from app.db.models import PublishJob, PublishStatus, Run, RunStatus
 from app.db.session import get_db
 from app.services.tiktok_publish.mode_c import export_package
+from app.services.youtube_publish.youtube_uploader import upload_video
 from app.settings import settings
 from app.utils.logging import get_logger
 from app.utils.notifications import notify_success
@@ -43,6 +44,8 @@ def run_publisher(run_id: str) -> str:
         from app.storage.artifact_paths import final_video_path
         post_video(final_video_path(run_date), caption, hashtags)
         export_path = str(final_video_path(run_date))
+    elif settings.PUBLISH_MODE == "Y":
+        export_path = _mode_y_publish(run_date, caption, hashtags, metadata)
     else:
         raise ValueError(f"Unsupported PUBLISH_MODE: {settings.PUBLISH_MODE}")
 
@@ -73,3 +76,26 @@ def _mode_c_export(
         hashtags=hashtags,
         metadata=metadata,
     )
+
+
+def _mode_y_publish(
+    run_date: str,
+    caption: str,
+    hashtags: list[str],
+    metadata: dict,
+) -> str:
+    from app.storage.artifact_paths import final_video_path, thumbnail_path
+
+    title = metadata.get("title") or caption[:95]
+    description = caption
+    if hashtags:
+        description = f"{caption}\n\n" + " ".join(f"#{h.lstrip('#')}" for h in hashtags)
+
+    result = upload_video(
+        video_path=final_video_path(run_date),
+        title=title,
+        description=description,
+        tags=[h.lstrip("#") for h in hashtags],
+        thumbnail_path=thumbnail_path(run_date),
+    )
+    return result.get("id", "")
